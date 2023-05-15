@@ -16,11 +16,3 @@ class StudentDashboardDTO(BaseModel):
 class StudentReviewRequest(BaseModel):
     StudentID: int
     TaskID: int
-
-class StudentContentDTO(BaseModel):
-    Link: str
-
-
-class StudentUploadDTO(BaseModel):
-    UploadLink: str
-    File: UploadFile

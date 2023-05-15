@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from src.repositories.reviewer_repository import Reviewer
 from src.services.dropbox_service import DropboxService
 from dropbox.files import GetTemporaryLinkResult
-from src.models.reviewer import ReviewBacklogDTO, ReviewStudentWorkDTO, ReviewScoreDTO
+from src.models.reviewer import ReviewBacklogDTO, ReviewScoreDTO
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -28,12 +28,13 @@ async def get_backlog() -> list[ReviewBacklogDTO]:
 async def submit_review(review: ReviewScoreDTO):
     reviewer_repo.update_review_score(review.ReviewID, review.Score)
     print(review.Score)
-    return 
+    return
 
 @router.get("/work/{folder_link}")
-async def get_work_folder(folder_link: str) -> ReviewStudentWorkDTO:
+async def get_work_folder(folder_link: str) -> str:
     dbx = dbs.get_dropbox_connection()
     response: GetTemporaryLinkResult.link = dbs.read_file_from_dropbox(folder_link, dbx)
     
-    work_link = ReviewStudentWorkDTO(response.link)
-    return work_link
+    return {
+        "Link": f"{response.link}"
+    }

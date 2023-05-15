@@ -2,7 +2,7 @@ from fastapi import APIRouter, File, UploadFile
 from src.repositories.student_repository import Student
 from src.services.dropbox_service import DropboxService
 from dropbox.files import GetTemporaryLinkResult
-from src.models.student import StudentDashboardDTO, StudentReviewRequest, StudentContentDTO, StudentUploadDTO
+from src.models.student import StudentDashboardDTO, StudentReviewRequest
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -34,13 +34,15 @@ async def get_task_content(content_link: str):
     dbx = dbs.get_dropbox_connection()
     response: GetTemporaryLinkResult.link = dbs.read_file_from_dropbox(content_link, dbx)
 
-    content_link = StudentContentDTO(response.link)
+    return {
+        "Link": f"{response.link}"
+    }
 
 @router.post("/task")
-async def upload_task(file_data: StudentUploadDTO):
+async def upload_task(file_data: str, file: UploadFile):
     dbx = dbs.get_dropbox_connection()
-    upload_file = await file_data.File.read(1024)
+    upload_file = await file_data.read(1024)
 
-    dbs.write_file_to_dropbox(upload_file, file_data.UploadLink, dbx)
+    dbs.write_file_to_dropbox(upload_file, file_data, dbx)
 
 

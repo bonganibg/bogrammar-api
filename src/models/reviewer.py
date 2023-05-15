@@ -8,10 +8,7 @@ class ReviewBacklogDTO(BaseModel):
     Course: str
     Task: str
     TaskFolderLink: str
-
-class ReviewStudentWorkDTO(BaseModel):
-    Link: str
-
+    
 class ReviewScoreDTO(BaseModel):
     Score: int
     ReviewID: int
