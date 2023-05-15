@@ -170,6 +170,6 @@ docker run bogrammar
 | `RELOAD` | Enable automatic reloads for the API | `boolean` |
 
 ## Documentation
-Navigate to `http://localhost:8000/redoc` for API documentation
+Navigate to `http://127.0.0.1:8000/redoc` or `http://127.0.0.1:8000/redoc` for API documentation
 
 
