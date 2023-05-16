@@ -13,7 +13,7 @@ def load_default_database_values():
     except FileNotFoundError() as error_message:
         print(error_message)
 
-def load_course_folders():
+load_default_database_values()
 
 
     

@@ -9,7 +9,7 @@ class StudentDashboardDTO(BaseModel):
     course: str
     topic: str
     review_score: str
-    review_status: str
+    review_status: bool
     content_download_link: str
     student_folder_upload_link: str
 

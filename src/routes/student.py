@@ -41,6 +41,7 @@ async def get_task_content(file_path: str):
 
 @router.post("/task", status_code=201)
 async def upload_task(file_path: str, file: UploadFile):
+    print('hello')
     dbx = dbs.get_dropbox_connection()
     upload_file = await file.read(1024)
 
