@@ -51,8 +51,8 @@ class Reviewer(DatabaseService):
             AND C.COURSE_ID = S.COURSE_ID
         """
 
-        keys = ["ReviewID", "StudentName", "StudentNumber", "FolderLink", 
-                "Course", "Task", "TaskFolderLink"]
+        keys = ["review_id", "student_name", "student_number", "folder_link", 
+                "course", "task", "task_folder_link"]
         
         data = self.run_query(query)
 

@@ -26,8 +26,8 @@ async def get_backlog() -> list[ReviewBacklogDTO]:
 
 @router.put("/{review_id}", status_code=201)
 async def submit_review(review: ReviewScoreDTO):
-    reviewer_repo.update_review_score(review.ReviewID, review.Score)
-    print(review.Score)
+    reviewer_repo.update_review_score(review.review_id, review.score)
+    print(review.score)
     return
 
 @router.get("/work")

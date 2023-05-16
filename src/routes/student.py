@@ -18,7 +18,7 @@ dbs = DropboxService(os.getenv("DBX_TOKEN"))
 
 @router.post("/review/request", status_code=201)
 async def request_review(review: StudentReviewRequest):
-    student_repo.update_request_review(review.StudentID, review.TaskID)
+    student_repo.update_request_review(review.student_id, review.task_id)
     print(review)
     return
 

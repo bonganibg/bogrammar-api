@@ -53,8 +53,8 @@ class Student(DatabaseService):
             AND C.COURSE_ID = S.COURSE_ID
         """       
         data = self.run_query(query)
-        keys = ["StudentID", "TaskID", "TaskNumber", "Course", "Topic", "ReviewScore",
-                "ReviewStatus", "ContentDownloadLink", "StudentFolderUploadLink"]
+        keys = ["student_id", "task_id", "task_number", "course", "topic", "review_score",
+                "review_status", "content_download_link", "student_folder_upload_link"]
         
         student_list = self.convert_tuple_to_dict(keys, data)
         student_object_list = [StudentDashboardDTO.parse_obj(review) for review in student_list]

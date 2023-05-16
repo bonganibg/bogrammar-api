@@ -1,14 +1,14 @@
 from pydantic import BaseModel
 
 class ReviewBacklogDTO(BaseModel):
-    ReviewID: str
-    StudentName: str
-    StudentNumber: str
-    FolderLink: str
-    Course: str
-    Task: str
-    TaskFolderLink: str
+    review_id: str
+    student_name: str
+    student_number: str
+    folder_link: str
+    course: str
+    task: str
+    task_folder_link: str
     
 class ReviewScoreDTO(BaseModel):
-    Score: int
-    ReviewID: int
+    score: int
+    review_id: int

@@ -3,16 +3,16 @@ from typing import Optional
 from fastapi import UploadFile
 
 class StudentDashboardDTO(BaseModel):
-    StudentID: int
-    TaskID: int
-    TaskNumber: int
-    Course: str
-    Topic: str
-    ReviewScore: str
-    ReviewStatus: str
-    ContentDownloadLink: str
-    StudentFolderUploadLink: str
+    student_id: int
+    task_id: int
+    task_number: int
+    course: str
+    topic: str
+    review_score: str
+    review_status: str
+    content_download_link: str
+    student_folder_upload_link: str
 
 class StudentReviewRequest(BaseModel):
-    StudentID: int
-    TaskID: int
+    student_id: int
+    task_id: int

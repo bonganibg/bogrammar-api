@@ -15,12 +15,12 @@ INSERT INTO TASK VALUES
 (2009, 1003, 3, "CS Task Three", "/cs2023/csthree");
 
 INSERT INTO STUDENT VALUES 
-(3001, 1001, "BR202305121349", "Billy Russo", "jiggy@email.com", "", "/students/BR202305121349/work"),
-(3002, 1001, "BW202305121350", "Bruce Wayne", "bats@email.com", "", "/students/BW202305121350/work"),
-(3003, 1002, "SK202305121349", "Selina Kyle", "kittycat@email.com", "", "/students/SK202305121349/work"),
-(3004, 1002, "BB202305121449", "Billy Batson", "captainmarvel@email.com", "", "/students/BB202305121449/work"),
-(3005, 1003, "SW202305121349", "Slade Wilson", "ds@email.com", "", "/students/SW202305121349/work"),
-(3006, 1003, "RA202305121349", "Ras Al Ghul", "rag@leagueofassassins.com", "", "/students/RA202305121349/work");
+(3001, 1001, "BR202305121349", "Billy Russo", "jiggy@email.com", "", "/students/BR202305121349"),
+(3002, 1001, "BW202305121350", "Bruce Wayne", "bats@email.com", "", "/students/BW202305121350"),
+(3003, 1002, "SK202305121349", "Selina Kyle", "kittycat@email.com", "", "/students/SK202305121349"),
+(3004, 1002, "BB202305121449", "Billy Batson", "captainmarvel@email.com", "", "/students/BB202305121449"),
+(3005, 1003, "SW202305121349", "Slade Wilson", "ds@email.com", "", "/students/SW202305121349"),
+(3006, 1003, "RA202305121349", "Ras Al Ghul", "rag@leagueofassassins.com", "", "/students/RA202305121349");
 
 INSERT INTO STUDENT_TASK(STUDENT_ID, TASK_ID) VALUES
 (3001, 2001),
