@@ -1,4 +1,4 @@
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, UploadFile, HTTPException
 from src.repositories.student_repository import Student
 from src.services.dropbox_service import DropboxService
 from dropbox.files import GetTemporaryLinkResult
@@ -32,11 +32,12 @@ async def get_dashboard(student_id) -> list[StudentDashboardDTO]:
 @router.get("/task", status_code=200)
 async def get_task_content(file_path: str):
     dbx = dbs.get_dropbox_connection()
-    response: GetTemporaryLinkResult.link = dbs.read_file_from_dropbox(file_path, dbx)
+    response = dbs.read_file_from_dropbox(file_path, dbx)
 
-    return {
-        "Link": f"{response.link}"
-    }
+    if (response == None):
+        raise HTTPException(status_code=404, detail=f'{file_path} was not found')
+    
+    return response
 
 @router.post("/task", status_code=201)
 async def upload_task(file_path: str, file: UploadFile):

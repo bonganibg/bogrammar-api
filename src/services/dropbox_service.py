@@ -31,13 +31,17 @@ class DropboxService:
                 dbx (Dropbox): Dropbox connection object
         """
 
+        # Make sure folder path starts with a forward slash
+        if (file_path[0] != '/'):
+            file_path = f"/{file_path}"
+
         try:
             dbx.files_upload(file, upload_path, mode=WriteMode('overwrite'))
             return True
         except ApiError:
             return False
         
-    def read_file_from_dropbox(self, file_path: str, dbx: dropbox.Dropbox) -> GetTemporaryLinkResult:
+    def read_file_from_dropbox(self, file_path: str, dbx: dropbox.Dropbox) -> str:
         """
             Get file download link from dropbox
 
@@ -53,4 +57,9 @@ class DropboxService:
         if (file_path[0] != '/'):
             file_path = f"/{file_path}"
 
-        return dbx.files_get_temporary_link(file_path) 
+        try: 
+            response: GetTemporaryLinkResult = dbx.files_get_temporary_link(file_path) 
+            return f'{response.link}'
+        except:
+            print(f'Could not locate {file_path}')
+            return None
