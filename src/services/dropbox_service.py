@@ -37,16 +37,20 @@ class DropboxService:
         except ApiError:
             return False
         
-    def read_file_from_dropbox(self, cloud_path: str, dbx: dropbox.Dropbox) -> GetTemporaryLinkResult:
+    def read_file_from_dropbox(self, file_path: str, dbx: dropbox.Dropbox) -> GetTemporaryLinkResult:
         """
             Get file download link from dropbox
 
             Parameters:
-                cloud_path (str): Path to dropbox folder where file is located
+                file_path (str): Path to dropbox file including the file extension
                 dbx (Dropbox): Dropbox connection object
 
             Returns:
                 GetTemporaryLinkResult object containing download link
         """
 
-        return dbx.files_get_temporary_link(cloud_path) 
+        # Make sure folder path starts with a forward slash
+        if (file_path[0] != '/'):
+            file_path = f"/{file_path}"
+
+        return dbx.files_get_temporary_link(file_path) 

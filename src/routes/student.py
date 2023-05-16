@@ -16,33 +16,33 @@ router = APIRouter(
 student_repo = Student(os.getenv("DATABASE_NAME"))
 dbs = DropboxService(os.getenv("DBX_TOKEN"))
 
-@router.post("/review/request", status_code=204)
+@router.post("/review/request", status_code=201)
 async def request_review(review: StudentReviewRequest):
     student_repo.update_request_review(review.StudentID, review.TaskID)
     print(review)
     return
 
-@router.get("/{student_id}/dashboard")
+@router.get("/{student_id}/dashboard", status_code=200)
 async def get_dashboard(student_id) -> list[StudentDashboardDTO]:                                                                                                                                                                                                                                   
     
     dashboard =  student_repo.get_tasks(student_id)
     
     return dashboard
 
-@router.get("/task")
-async def get_task_content(content_link: str):
+@router.get("/task", status_code=200)
+async def get_task_content(file_path: str):
     dbx = dbs.get_dropbox_connection()
-    response: GetTemporaryLinkResult.link = dbs.read_file_from_dropbox(content_link, dbx)
+    response: GetTemporaryLinkResult.link = dbs.read_file_from_dropbox(file_path, dbx)
 
     return {
         "Link": f"{response.link}"
     }
 
-@router.post("/task")
-async def upload_task(file_data: str, file: UploadFile):
+@router.post("/task", status_code=201)
+async def upload_task(file_path: str, file: UploadFile):
     dbx = dbs.get_dropbox_connection()
-    upload_file = await file_data.read(1024)
+    upload_file = await file.read(1024)
 
-    dbs.write_file_to_dropbox(upload_file, file_data, dbx)
+    dbs.write_file_to_dropbox(upload_file, file_path, dbx)
 
 

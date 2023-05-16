@@ -1,0 +1,9 @@
+/tasks/se2023/seone
+/tasks/se2023/setwo
+/tasks/se2023/sethree
+/tasks/ds2023/dsone
+/tasks/ds2023/dstwo
+/tasks/ds2023/dsthree
+/tasks/cs2023/csone
+/tasks/cs2023/cstwo
+/tasks/cs2023/csthree

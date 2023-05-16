@@ -18,7 +18,7 @@ TOKEN = os.getenv('DBX_TOKEN')
 reviewer_repo = Reviewer(os.getenv('DATABASE_NAME'))
 dbs = DropboxService(TOKEN)
 
-@router.get("/backlog")
+@router.get("/backlog", status_code=200)
 async def get_backlog() -> list[ReviewBacklogDTO]:
     backlog = reviewer_repo.get_review_backlog()
 
@@ -30,11 +30,11 @@ async def submit_review(review: ReviewScoreDTO):
     print(review.Score)
     return
 
-@router.get("/work/{folder_link}")
-async def get_work_folder(folder_link: str) -> str:
+@router.get("/work")
+async def get_work_folder(file_path: str) -> str:
     dbx = dbs.get_dropbox_connection()
-    response: GetTemporaryLinkResult.link = dbs.read_file_from_dropbox(folder_link, dbx)
-    
+    response: GetTemporaryLinkResult.link = dbs.read_file_from_dropbox(file_path, dbx)
+
     return {
         "Link": f"{response.link}"
     }

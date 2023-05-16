@@ -24,7 +24,12 @@ class DatabaseService:
             Return:
                 Connection object to database
         """
-        return sqlite3.connect(self.db_path)
+
+        try:
+            db_connection = sqlite3.connect(self.db_path)
+            return db_connection
+        except:
+            print('Could not be located')        
     
     def reset_database(self):
         """
@@ -83,6 +88,7 @@ class DatabaseService:
             Parameters:
                 script (str): Script file content
         """
+
         db = self.get_db_connection()
         cursur = db.cursor()
         cursur.executescript(script)
@@ -90,7 +96,7 @@ class DatabaseService:
         db.commit()
         db.close()
 
-    def run_query(self, query: str) -> list(tuple):
+    def run_query(self, query: str) -> list:
         """
             Runs SQL queries
 
@@ -102,10 +108,13 @@ class DatabaseService:
         """
 
         db = self.get_db_connection()
-        cursur = db.cursor()
+        cursur = db.cursor()\
         
-        output = cursur.execute(query).fetchall()
-        db.commit()
-        db.close()
-
-        return output
+        try:
+            return cursur.execute(query).fetchall()
+        except:
+            print("Script could not be run")
+            return None
+        finally:
+            db.commit()
+            db.close()
