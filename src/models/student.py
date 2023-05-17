@@ -1,6 +1,4 @@
 from pydantic import BaseModel
-from typing import Optional
-from fastapi import UploadFile
 
 class StudentDashboardDTO(BaseModel):
     student_id: int

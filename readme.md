@@ -1,40 +1,40 @@
-## Table of Content
+# Table of Content
 - [Introduction](#Introduction)
-- [Sytem Overview](#system-overview)
+- [Sytem Overview](#system overview)
 	- [Summary](#summary)
 	- [Design](#design)
 - [Implementation](#Implementation)
 	- [Requirements](#requirements)
 	- [Getting Started](#get-started)
 	- [Environment Variables](#environment-variables)
-- [Documentation](#documentation)
+- [Documents](#documents)
 
 
-## Introduction
+# Introduction
 This is a small demo application that simulates a more optimised flow for students uploading their tasks and reviewers receiving and reviewing the work. 
 
 The system is made up of two parts, the API and Frontend application
 
-## System Overview
+# System Overview
 
-### Summary
+## Summary
 The Bogammar API is an API designed to make it easier for students and reviewers to work with data stored in Dropbox by removing the need for them to jump between their respective platforms and Dropbox. 
 
 The Bogrammar API allows for the following:
-##### Students
+### Students
 - Uploading work to dropbox
 - Downloading task and course material from dropbox
 - Requesting reviews
 - Getting course tasks
 
-##### Reviewers
+### Reviewers
 - View review backlog
 - Download a students work from dropbox
 - Submit reviews
 
-### Design
+## Design
 
-#### Dropbox Folder Structure
+### Dropbox Folder Structure
 ```markdown
 Bogrammar
   Courses
@@ -56,7 +56,7 @@ The dropbox folder is designed to reduce the number of folders that are stored b
 
 The students folder follows the same principles as the course folder.
 
-#### Database 
+### Database 
 ```mermaid
 classDiagram
 	Course -- Course
@@ -103,8 +103,8 @@ classDiagram
     Task_Review : [FK] STUDENT_ID - Integer
 ```
 
-## Implementation
-### Requirements
+# Implementation
+## Requirements
 - Python
 - FastAPI
 - Uvicorn
@@ -113,11 +113,36 @@ classDiagram
 - Python-dotenv
 - Python-multipart
 
-### Get Started
+## Get Started
+
+### Dropbox
+1. Create a new app on dropbox [here](https://www.dropbox.com/developers)
+2. Allow the following permissions
+	1. `file.content.write`
+	2. `file.content.read`
+	3. `file_requests.write`
+	4. `file_requests.read`
+3. Generate an API in the app console
+4. In your dropbox file, create the following directories and files so the user can download content
+``` markdown
+courses
+    se2023
+      seone.zip
+      setwo.zip
+      sethree.zip
+    ds2023
+      dsone.zip
+      dstwo.zip
+      dsthree.zip
+    cs2023
+      cseone.zip
+      cstwo.zip
+      csthree.zip
+```
 
 *Clone the repo*
 ``` shell
-git clone https://www.github.com/bonganibg/bogrammar-api.com
+git clone https://www.github.com/bonganibg/bogrammar-api.git
 ```
 
 *Get into the directory*
@@ -170,6 +195,6 @@ docker run bogrammar
 | `RELOAD` | Enable automatic reloads for the API | `boolean` |
 
 ## Documentation
-Navigate to `http://127.0.0.1:8000/redoc` or `http://127.0.0.1:8000/redoc` for API documentation
+Navigate to `http://localhost:8000/redoc` for API documentation
 
 
